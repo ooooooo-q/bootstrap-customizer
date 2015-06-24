@@ -4,6 +4,7 @@ del = require 'del'
 filter = require 'gulp-filter'
 bower = require 'main-bower-files'
 sass = require 'gulp-sass'
+styledocco = require 'gulp-styledocco'
 
 gulp.task 'default', ['server'], ->
 
@@ -32,8 +33,17 @@ gulp.task 'sass', ->
     .pipe sass()
     .pipe gulp.dest('build/css')
 
+gulp.task 'styledocco', ['clean:docs', 'bower', 'sass'], ->
+  gulp.src ['build/**/*.css']
+    .pipe styledocco
+      out: 'docs'
+      name: 'styledocco'
+
 gulp.task 'clean', (cb) ->
   del ['build'], cb
+
+gulp.task 'clean:docs', (cb) ->
+  del ['docs'], cb
 
 gulp.task 'build', ['clean'], ->
   gulp.src 'src/**/*'
