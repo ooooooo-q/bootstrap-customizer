@@ -12,5 +12,16 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/*.min.*",
+        "dist/css/*.min.*",
+        "dist/fonts/*.*"
+      ]
+    }
+  }
 }
