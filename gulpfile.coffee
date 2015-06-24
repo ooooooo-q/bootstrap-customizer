@@ -3,6 +3,7 @@ webserver = require 'gulp-webserver'
 del = require 'del'
 filter = require 'gulp-filter'
 bower = require 'main-bower-files'
+sass = require 'gulp-sass'
 
 gulp.task 'default', ['server'], ->
 
@@ -25,6 +26,11 @@ gulp.task 'bower', ->
     .pipe cssFilter.restore()
     .pipe fontFilter
     .pipe gulp.dest 'build/fonts/lib'
+
+gulp.task 'sass', ->
+  gulp.src 'src/css/**/*.scss'
+    .pipe sass()
+    .pipe gulp.dest('build/css')
 
 gulp.task 'clean', (cb) ->
   del ['build'], cb
